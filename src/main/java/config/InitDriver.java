@@ -13,16 +13,16 @@ public class InitDriver {
     private final static int IMPLICIT_WAIT = 10;
     protected Wait wait;
     protected static WebDriver driver;
-    protected Map<String, Object> prefs = new HashMap<String, Object>();
-    protected ChromeOptions options = new ChromeOptions();
+    private Map<String, Object> prefs = new HashMap<String, Object>();
+    private ChromeOptions options = new ChromeOptions();
 
     protected void initDriver() {
         prefs.put("profile.default_content_setting_values.notifications", 2);
         options.setExperimentalOption("prefs", prefs);
         System.setProperty("webdriver.chrome.driver", "./src/main/resources/chromedriver.exe");
-        this.driver = new ChromeDriver(options);
-        this.driver.manage().window().maximize();
-        this.driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
+        driver = new ChromeDriver(options);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
     }
 
     protected void initWait() {
