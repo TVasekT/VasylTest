@@ -5,16 +5,17 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import util.Wait;
 
 public class UdacityStartPage extends InitDriver {
     public UdacityStartPage() {
+        wait = new Wait(driver);
         PageFactory.initElements(driver, this);
     }
 
     @FindBy(xpath = "(//a[@title='Sign In'])[2]")
-    private WebElement signInButton;
-    @FindBy(xpath = "//div[@class=\"modal-close\"]")
-    private WebElement modalWindow;
+    public WebElement signInButton;
+
 
     @Step("Get url")
     public UdacityStartPage navigateTo(String url) {
@@ -24,10 +25,10 @@ public class UdacityStartPage extends InitDriver {
     }
     @Step("Step to Start page")
     public UdacityLoginPage signIn() {
-        modalWindow.isDisplayed();
-        modalWindow.click();
-        wait.clickableThenClick(signInButton);
+        wait.elementIsClickable(signInButton);
         signInButton.click();
+
         return new UdacityLoginPage();
     }
+
 }

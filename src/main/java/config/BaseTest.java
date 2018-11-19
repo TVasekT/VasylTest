@@ -1,18 +1,27 @@
 package config;
 
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.Assert;
+import org.testng.annotations.*;
+import page.UdacityHomePage;
+import page.UdacityLoginPage;
+import page.UdacityStartPage;
+import util.Wait;
 
 public class BaseTest extends InitDriver {
-    @BeforeTest
-    public void start(){
-        super.initDriver();
-        super.initWait();
+
+
+    @BeforeTest(alwaysRun = true, description = "Setup driver")
+    public void start() {
+        initDriver();
+        initWait();
     }
 
-    @AfterTest
-    public void quit (){
-        super.closeDriver();
+
+    @AfterTest(alwaysRun = true, description = "Close Driver")
+    public void quit() {
+        closeDriver();
+
+
     }
 
 }

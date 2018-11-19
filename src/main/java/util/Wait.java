@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class Wait {
-    private final static int WAIT_TIME = 10;
+    private final static int WAIT_TIME = 1000;
     private WebDriver driver;
 
     public Wait(WebDriver driver) {
@@ -28,9 +28,9 @@ public class Wait {
                 .until(condition);
     }
 
-    public void clickableThenClick(WebElement element) {
+    public void elementIsClickable(WebElement element) {
         wait(ExpectedConditions.elementToBeClickable(element), WAIT_TIME);
-        element.click();
+
     }
 
     public void visible(WebElement element, int waitTime) {
